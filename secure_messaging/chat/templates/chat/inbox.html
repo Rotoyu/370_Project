@@ -1,0 +1,18 @@
+{% extends 'chat/base.html' %}
+
+{% block content %}
+<h2>Inbox</h2>
+{% if messages %}
+    <ul class="list-group">
+    {% for message in messages %}
+        <li class="list-group-item">
+            From: {{ message.sender.username }} - 
+            Sent: {{ message.timestamp|date:"F d, Y H:i" }}
+            <a href="{% url 'view_message' message.id %}" class="btn btn-sm btn-info float-right">View</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No messages in your inbox.</p>
+{% endif %}
+{% endblock %}
